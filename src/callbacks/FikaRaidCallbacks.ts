@@ -12,6 +12,7 @@ import { IStartDedicatedResponse } from "../models/fika/routes/raid/dedicated/IS
 import { IStartDedicatedRequest } from "../models/fika/routes/raid/dedicated/IStartDedicatedRequest";
 import { IStatusDedicatedRequest } from "../models/fika/routes/raid/dedicated/IStatusDedicatedRequest";
 import { IStatusDedicatedResponse } from "../models/fika/routes/raid/dedicated/IStatusDedicatedResponse";
+import { ISpawnDedicatedRequest } from "../models/fika/routes/raid/dedicated/ISpawnDedicatedRequest";
 
 @injectable()
 export class FikaRaidCallbacks {
@@ -62,5 +63,15 @@ export class FikaRaidCallbacks {
     /** Handle /fika/raid/dedicated/status */
     public handleRaidStatusDedicated(url: string, info: IStatusDedicatedRequest, sessionID: string): string {
         return this.httpResponseUtil.noBody(this.fikaRaidController.handleRaidStatusDedicated(sessionID, info));
+    }
+
+    /** Handle /fika/raid/dedicated/spawn */
+    public handleRaidSpawnDedicated(url: string, info: ISpawnDedicatedRequest, sessionID: string): string {
+        return this.httpResponseUtil.noBody(this.fikaRaidController.handleRaidSpawnDedicated(sessionID, info));
+    }
+
+    /** Handle /fika/raid/dedicated/sse */
+    public handleRaidSseDedicated(url: string, info: ISseDedicatedRequest, sessionID: string): string {
+        return this.httpResponseUtil.noBody(this.fikaRaidController.handleRaidSseDedicated(sessionID, info));
     }
 }

@@ -10,6 +10,7 @@ import { IFikaRaidJoinRequestData } from "../../models/fika/routes/raid/join/IFi
 import { IFikaRaidLeaveRequestData } from "../../models/fika/routes/raid/leave/IFikaRaidLeaveRequestData";
 import { IStartDedicatedRequest } from "../../models/fika/routes/raid/dedicated/IStartDedicatedRequest";
 import { IStatusDedicatedRequest } from "../../models/fika/routes/raid/dedicated/IStatusDedicatedRequest";
+import { ISpawnDedicatedRequest } from "../../models/fika/routes/raid/dedicated/ISpawnDedicatedRequest";
 
 @injectable()
 export class FikaRaidStaticRouter extends StaticRouter {
@@ -38,6 +39,12 @@ export class FikaRaidStaticRouter extends StaticRouter {
             }),
             new RouteAction("/fika/raid/dedicated/status", async (url: string, info: IStatusDedicatedRequest, sessionID: string, _output: string): Promise<string> => {
                 return this.fikaRaidCallbacks.handleRaidStatusDedicated(url, info, sessionID);
+            }),
+            new RouteAction("/fika/raid/dedicated/spawn", async (url: string, info: ISpawnDedicatedRequest, sessionID: string, _output: string): Promise<string> => {
+                return this.fikaRaidCallbacks.handleRaidSpawnDedicated(url, info, sessionID);
+            }),
+            new RouteAction("/fika/raid/dedicated/sse", async (url: string, info: ISseDedicatedRequest, sessionID: string, _output: string): Promise<string> => {
+                return this.fikaRaidCallbacks.handleRaidSseDedicated(url, info, sessionID);
             }),
         ]);
     }
